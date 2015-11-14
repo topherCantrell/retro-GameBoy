@@ -12,7 +12,13 @@ I started with a Game Boy Color and several cartridges I bought from ebay.
 
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/IMG_0310.JPG)
 
-## Cartridges
+## Links
+
+This is my primary source. Here is how to remove the existing rom and replace with an FRAM. There
+is even a circuit here to program it.
+[Gameboy Fram Cart](http://www.robotdungeon.com/ElectronicProjectGameboyROM.html)
+
+## Development Cartridges
 
 Two of the cartridges (Tarzan and Winnie the Pooh) had clear cases. I chose to hack those.
 The screws holding the cartridges together have the Nintendo star-pattern heads. I was able
