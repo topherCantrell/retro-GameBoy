@@ -25,8 +25,6 @@ is even a circuit here to program it.
 
 ## Development Cartridges
 
-![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/IMG_0322.JPG)
-
 Two of the cartridges (Tarzan and Winnie the Pooh) had clear cases. I chose to hack those.
 The screws holding the cartridges together have the Nintendo star-pattern heads. I was able
 to carefully unscrew them with needle-nose pliars.
@@ -42,3 +40,4 @@ and parts are facing out (not in towards the unit).
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/cartPinout.png)
 
 [Image from](https://www.insidegadgets.com/2011/03/19/gbcartread-arduino-based-gameboy-cart-reader-%E2%80%93-part-1-read-the-rom/)
+
