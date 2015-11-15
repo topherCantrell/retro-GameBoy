@@ -37,7 +37,9 @@ has a battery-backed RAM in it.
 The cartridge is one-sided. It slides into the back of the unit so that the connector pads
 and parts are facing out (not in towards the unit).
 
+[Image from here](https://www.insidegadgets.com/2011/03/19/gbcartread-arduino-based-gameboy-cart-reader-%E2%80%93-part-1-read-the-rom/)
+
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/cartPinout.png)
 
-[Image from](https://www.insidegadgets.com/2011/03/19/gbcartread-arduino-based-gameboy-cart-reader-%E2%80%93-part-1-read-the-rom/)
+
 
