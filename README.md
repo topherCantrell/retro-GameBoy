@@ -25,6 +25,10 @@ is even a circuit here to program it.
 
 [http://www.loirak.com/gameboy/gbprog.php](http://www.loirak.com/gameboy/gbprog.php)
 
+[http://belial.blarzwurst.de/gbpaper/paper.pdf](http://belial.blarzwurst.de/gbpaper/paper.pdf)
+
+[http://gbdev.gg8.se/wiki/articles/Main_Page](http://gbdev.gg8.se/wiki/articles/Main_Page)
+
 ## Development Cartridges
 
 Two of the cartridges (Tarzan and Winnie the Pooh) had clear cases. I chose to hack those.
