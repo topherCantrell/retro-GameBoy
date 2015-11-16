@@ -23,6 +23,8 @@ is even a circuit here to program it.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Game_Boy_Color)
 
+[http://www.loirak.com/gameboy/gbprog.php](http://www.loirak.com/gameboy/gbprog.php)
+
 ## Development Cartridges
 
 Two of the cartridges (Tarzan and Winnie the Pooh) had clear cases. I chose to hack those.
