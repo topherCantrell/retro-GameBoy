@@ -1,0 +1,26 @@
+0100: 00 C3 ; Always
+0102: 50 01 ; Starts at 150
+ 
+; Logo signature
+0104: CE ED 66 66 CC 0D 00 0B 03 73 00 83
+0110: 00 0C 00 0D 00 08 11 1F 88 89 00 0E DC CC 6E E6
+0120: DD DD D9 99 BB BB 67 63 6E 0E EC CC DD DC 99 9F
+0130: BB B9 33 3E 
+
+; Title of game
+0134: 5A 45 4C 44 41 00 00 00 00 00 00 00 00 00 00 00 ; ZELDA
+
+0144: 00 00 00 ; Not used 
+
+; Cartridge type
+0146: 03 ; ROM+MBC1+RAM+BATTERY
+
+; ROM size
+0148: 04 ; 4MBit ROM (512K byte) 
+
+; RAM size
+0149: 02 ; 64KBit RAM (8K byte)
+
+; Marker, version, checks
+014A: 01 01 00 6C 47 B7
+
