@@ -29,6 +29,10 @@ is even a circuit here to program it.
 
 [http://gbdev.gg8.se/wiki/articles/Main_Page](http://gbdev.gg8.se/wiki/articles/Main_Page)
 
+[Tech info](http://fms.komkon.org/GameBoy/Tech/Software.html)
+
+[Javascript Emulator](http://imrannazar.com/GameBoy-Emulation-in-JavaScript:-Interrupts)
+
 ## Development Cartridges
 
 Two of the cartridges (Tarzan and Winnie the Pooh) had clear cases. I chose to hack those.

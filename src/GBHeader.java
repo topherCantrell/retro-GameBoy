@@ -22,8 +22,8 @@ public class GBHeader {
         is.close();
         
    
-        int pos = 0x100;
-        for(int y=0;y<8;++y) {
+        int pos = 0x000;
+        for(int y=0;y<17;++y) {
             System.out.print(Integer.toString(pos,16)+":");
             for(int x=0;x<16;++x) {
                 System.out.print(" "+twoDigitHex(data[pos++]));                
