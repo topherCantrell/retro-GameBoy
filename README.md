@@ -51,5 +51,10 @@ and parts are facing out (not in towards the unit).
 
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/cartPinout.png)
 
+I decided to start with the simple ROM+MBC. The board is shorter ... more room at the top for an expansion 
+board. The pins on the simpler-ROM are farther apart, and it is easier to work with the board. I used
+tiny side-cutters to cut the ROM from its surface mount pads. Each pin on the ROM has a corresponding
+through-hole pad for me to tag wires into.
 
+![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/cart2.png)
 
