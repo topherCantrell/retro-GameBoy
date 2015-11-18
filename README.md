@@ -17,8 +17,11 @@ simpler programs that don't access the color registers. The cartridge pinouts ar
 
 ## Links
 
-This is my primary source. Here is how to remove the existing rom and replace with an FRAM. There
-is even a circuit here to program it.
+Nice, concise listing of registers and opcode changes:
+[Tech info](http://fms.komkon.org/GameBoy/Tech/Software.html)
+
+Here is a cartridge like I am making (I got the idea here). It explains how to remove the existing 
+ROM and replace with an FRAM. There is even a circuit here to program the FRAM:
 [Gameboy Fram Cart](http://www.robotdungeon.com/ElectronicProjectGameboyROM.html)
 
 [Wikipedia](https://en.wikipedia.org/wiki/Game_Boy_Color)
