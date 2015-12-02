@@ -36,6 +36,8 @@ ROM and replace with an FRAM. There is even a circuit here to program the FRAM:
 
 [Javascript Emulator](http://imrannazar.com/GameBoy-Emulation-in-JavaScript:-Interrupts)
 
+[http://datasheet.octopart.com/FM1808-70-PG-Ramtron-datasheet-8328945.pdf](http://datasheet.octopart.com/FM1808-70-PG-Ramtron-datasheet-8328945.pdf)
+
 ## Development Cartridges
 
 Two of the cartridges (Tarzan and Winnie the Pooh) had clear cases. I chose to hack those.
@@ -62,4 +64,6 @@ through-hole pad for me to tag wires into.
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/cart2.png)
 
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/NROM.png)
+
+![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/FM1808.png)
 
