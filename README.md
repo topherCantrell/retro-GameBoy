@@ -67,8 +67,6 @@ through-hole pad for me to tag wires into.
 
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/FM1808.png)
 
-![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/MBC5.png)
-
 ## Programmer
 
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/Programmer.png)
