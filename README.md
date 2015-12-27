@@ -79,3 +79,14 @@ through-hole pad for me to tag wires into.
 
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/IMG_0349.JPG)
 
+12/27/2015
+
+Stacking this project for a bit. I wrote a serial program for the prop to read/write/checksum
+the RAM. I am getting inconsistent results. SOME programming works, but there are some addresses
+that are flaky. The datasheet says the minimum power is 4.5V. But one of the links shows a
+guy using it in the gameboy. But he programmed it with a 5V programmer.
+
+Maybe the power supply from the prop isn't strong enough to drive the FRAM chip too. Try using an
+external 3.3V supply. Try using a 5V programmer. The 1808 is obsolete. Try using a modern FRAM
+chip even if you have to make a DIP adapter board.
+
