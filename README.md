@@ -24,6 +24,8 @@ Here is a cartridge like I am making (I got the idea here). It explains how to r
 ROM and replace with an FRAM. There is even a circuit here to program the FRAM:
 [Gameboy Fram Cart](http://www.robotdungeon.com/ElectronicProjectGameboyROM.html)
 
+[http://www.reinerziegler.de/readplus.htm#programmable_MBC5_game_cartridge](http://www.reinerziegler.de/readplus.htm#programmable_MBC5_game_cartridge)
+
 [Wikipedia](https://en.wikipedia.org/wiki/Game_Boy_Color)
 
 [http://www.loirak.com/gameboy/gbprog.php](http://www.loirak.com/gameboy/gbprog.php)
