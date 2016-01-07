@@ -92,14 +92,34 @@ public class FRAM {
     }
     
     public int[] read(int size) throws SerialPortException {
+        
+        int[] ret = new int[size];        
+        int pos = 0;
+        while(pos<ret.length) {
+            int [] chunk = read16();
+            int toCopy = ret.length - pos;
+            if(toCopy>16) toCopy=16;
+            for(int x=0;x<toCopy;++x) {
+                ret[pos+x] = chunk[x];
+            }
+            pos = pos + toCopy;            
+        }        
+        return ret;
+    }
+    
+    public int[] read16() throws SerialPortException {
         // "R"
         // returns "xxxxxxxx aabbccddeeff..."
-        // TODO always 16 bytes in at a time
         String command = "R";
         String ret = sendCommand(command);
-        System.out.println(":"+ret+":");
-        
-        return null;
+        //System.out.println(":"+ret+":");
+        // TODO check
+        int [] data = new int[16];
+        int pos = 9;
+        for(int x=0;x<16;++x) {
+            data[x] = Integer.parseInt(ret.substring(pos+x*2, pos+x*2+2),16);
+        }
+        return data;
     }
     
     public void fill(int address, int value) throws SerialPortException, SerialPortTimeoutException {
