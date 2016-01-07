@@ -1,18 +1,35 @@
 package programmer;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Arrays;
+
 import jssc.SerialPort;
 import jssc.SerialPortException;
-import jssc.SerialPortTimeoutException;
+import jssc.SerialPortList;
 
+/**
+ * Control the FRAM programmer through USB PropStick
+ * 
+ * This class coordinates communication with the FRAM programmer board. The board
+ * understands several serial commands. This class speaks that protocol.
+ */
 public class FRAM {
     
     SerialPort port;
-    static final boolean DEBUG = true;
+    private static final boolean DEBUG = true;
         
+    /**
+     * This creates an open connection to the FRAM programmer board
+     * @param portName local COM port name
+     * @throws SerialPortException
+     */
     public FRAM(String portName) throws SerialPortException {
         
-        //String[] portNames = SerialPortList.getPortNames();
-        //System.out.println(Arrays.toString(portNames));
+        String[] portNames = SerialPortList.getPortNames();
+        System.out.println("Available ports:"+Arrays.toString(portNames));
         
         port = new SerialPort(portName);
         port.openPort();
@@ -23,42 +40,13 @@ public class FRAM {
         
         port.setFlowControlMode(SerialPort.FLOWCONTROL_NONE);
         
-        // Use like this
-        
-        /*
-        port.addEventListener(new SerialPortEventListener() {
-
-            @Override
-            public void serialEvent(SerialPortEvent event) {
-                try {                    
-                    String data = port.readString(event.getEventValue());
-                    System.out.println(data);
-                    
-                    
-                } catch (SerialPortException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                
-            }
-            
-        },SerialPort.MASK_RXCHAR);       
-        
-        while(true) {
-            Thread.sleep(5000);            
-            port.writeString("Hello\r");
-            Thread.sleep(1000);
-            String a = port.readString();
-            System.out.println(":"+a+":");
-            Thread.sleep(1000);
-            a = port.readString();
-            System.out.println(":"+a+":");
-        }
-        
-         */
-        
     }
     
+    /**
+     * Set the programmer's data cursor
+     * @param address the cursor address
+     * @throws SerialPortException
+     */
     public void setCursor(int address) throws SerialPortException {     
         // "Cxxxxxxxx"
         // returns "Cxxxxxxxx xxxxxxxx"
@@ -71,6 +59,11 @@ public class FRAM {
         }        
     }
     
+    /**
+     * Write the given data to the FRAM at the current data cursor
+     * @param data the data to write
+     * @throws SerialPortException
+     */
     public void write(int [] data) throws SerialPortException { 
         // "Waabbccddeeff"
         // returns "Waabbccddeeff xxxxxxxx cccc"
@@ -91,6 +84,12 @@ public class FRAM {
         }        
     }
     
+    /**
+     * Read bytes from the FRAM from the current data cursor
+     * @param size number of bytes to read
+     * @return the bytes read
+     * @throws SerialPortException
+     */
     public int[] read(int size) throws SerialPortException {
         
         int[] ret = new int[size];        
@@ -107,7 +106,8 @@ public class FRAM {
         return ret;
     }
     
-    public int[] read16() throws SerialPortException {
+    // The programmer board reads 16 bytes at a time
+    private int[] read16() throws SerialPortException {
         // "R"
         // returns "xxxxxxxx aabbccddeeff..."
         String command = "R";
@@ -121,15 +121,29 @@ public class FRAM {
         }
         return data;
     }
-    
-    public void fill(int address, int value) throws SerialPortException, SerialPortTimeoutException {
+        
+    /**
+     * Fill an area of the FRAM with the given value
+     * @param address the starting address
+     * @param size the number of bytes to fill
+     * @param value the fill value
+     * @throws SerialPortException
+     */
+    public void fill(int address, int size, int value) throws SerialPortException {
         setCursor(address);
         // "Fvvssssss"
         // returns "xxxxxx cccc"        
         // TODO
     }
     
-    public int getChecksum(int address, int size) throws SerialPortException, SerialPortTimeoutException {        
+    /**
+     * Get a two-byte checksum of the requested FRAM area
+     * @param address starting address
+     * @param size number of bytes to check
+     * @return the checksum
+     * @throws SerialPortException
+     */
+    public int getChecksum(int address, int size) throws SerialPortException {        
         setCursor(address);
         // "Xssssss"
         // returns "xxxxxx cccc"
@@ -137,18 +151,35 @@ public class FRAM {
         return 0;
     }
     
-    //    
-    
-    public int[] read(int address, int size) throws SerialPortException, SerialPortTimeoutException {
+    /**
+     * Read bytes from the FRAM
+     * @param address the starting address
+     * @param size the number of bytes to read
+     * @return the FRAM data
+     * @throws SerialPortException
+     */
+    public int[] read(int address, int size) throws SerialPortException {
         setCursor(address);
         return read(size);
     }
     
-    public void write(int address, int [] data) throws SerialPortException, SerialPortTimeoutException {
+    /**
+     * Write bytes to the FRAM
+     * @param address the starting address
+     * @param data the bytes to write
+     * @throws SerialPortException
+     */
+    public void write(int address, int [] data) throws SerialPortException {
         setCursor(address);
         write(data);        
     }
     
+    /**
+     * Send a command to the FRAM and return the response
+     * @param command the command to send
+     * @return the response line
+     * @throws SerialPortException
+     */
     public String sendCommand(String command) throws SerialPortException {
         if(DEBUG) System.out.println("SEND:"+command+":");
         port.writeString(command+"\r");
@@ -180,14 +211,40 @@ public class FRAM {
     public static void main(String [] args) throws Exception
     {
         
-        Thread.sleep(5000);
+        // Super-simple file transfer
+        
+        // java programmer.FRAM toFRAM filename
+        // java programmer.FRAM fromFRAM filename
+        
         FRAM fram = new FRAM("COM3");
-        //int [] data = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
-        //fram.write(0x00,data);
-        //fram.read(0x00,100);    
-        //fram.read(0x00,100); 
-        fram.read(0x00,100); 
-        Thread.sleep(5000);
+        
+        if(args.length>0 && args[0].equals("fromFRAM")) {
+            
+            int [] data = fram.read(0,32*1024);
+            OutputStream os = new FileOutputStream(args[1]);
+            for(int x=0;x<data.length;++x) {
+                os.write(data[x]);
+            }
+            os.flush();
+            os.close();
+            
+            System.out.println("Copied FRAM to file");
+            
+        } else if(args.length>0 && args[0].equals("toFRAM")) {
+            
+            InputStream is = new FileInputStream(args[1]);
+            int [] data = new int[is.available()];
+            for(int x=0;x<data.length;++x) {
+                data[x] = is.read();
+            }
+            is.close();            
+            fram.write(0,data);
+            
+            System.out.println("Copied file to FRAM");
+            
+        } else {
+            throw new Exception("Invalid operation '"+args[0]+"'");
+        }
         
     }
 
