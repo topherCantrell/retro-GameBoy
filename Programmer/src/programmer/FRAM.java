@@ -2,17 +2,19 @@ package programmer;
 
 import jssc.SerialPort;
 import jssc.SerialPortException;
+import jssc.SerialPortTimeoutException;
 
 public class FRAM {
     
     SerialPort port;
-    
+    static final boolean DEBUG = true;
+        
     public FRAM(String portName) throws SerialPortException {
         
         //String[] portNames = SerialPortList.getPortNames();
         //System.out.println(Arrays.toString(portNames));
         
-        SerialPort port = new SerialPort(portName);
+        port = new SerialPort(portName);
         port.openPort();
         port.setParams(SerialPort.BAUDRATE_115200,
                 SerialPort.DATABITS_8,
@@ -58,36 +60,56 @@ public class FRAM {
     }
     
     public void setCursor(int address) throws SerialPortException {     
-        // "Cxxxxxx"
-        // returns "xxxxxx"
-        String command = Integer.toString(address,16).toUpperCase();
-        while(command.length()<6) command = "0"+command;
-        command = "C"+command;
+        // "Cxxxxxxxx"
+        // returns "Cxxxxxxxx xxxxxxxx"
+        String addr = Integer.toString(address,16).toUpperCase();
+        while(addr.length()<8) addr = "0"+addr;
+        String command = "C"+addr;
         String ret = sendCommand(command);
-        System.out.println("::"+ret+"::");
+        if(!ret.equals(command+" "+addr)) {
+            throw new RuntimeException("Bad return:"+ret+":");
+        }        
     }
     
-    public void write(int [] data) { 
-        // "aabbccddeeff"
-        // returns "xxxxxx aabbccddeeff cccc"
-        // TODO break the data up into digestable chunks
+    public void write(int [] data) throws SerialPortException { 
+        // "Waabbccddeeff"
+        // returns "Waabbccddeeff xxxxxxxx cccc"
+        int pos = 0;
+        while(pos<data.length) {
+            int toSend = data.length - pos;
+            if(toSend>16) toSend=16;
+            String command = "W";
+            for(int x=0;x<toSend;++x) {
+                String d = Integer.toString(data[pos+x],16).toUpperCase();
+                while(d.length()<2) d="0"+d;
+                command = command + d;
+            }
+            String ret = sendCommand(command);
+            System.out.println(":"+ret+":");
+            // TODO check
+            pos = pos + toSend;
+        }        
     }
     
-    public int[] read(int size) {
+    public int[] read(int size) throws SerialPortException {
         // "R"
-        // returns "xxxxxx aabbccddeeff..."
+        // returns "xxxxxxxx aabbccddeeff..."
         // TODO always 16 bytes in at a time
+        String command = "R";
+        String ret = sendCommand(command);
+        System.out.println(":"+ret+":");
+        
         return null;
     }
     
-    public void fill(int address, int value) throws SerialPortException {
+    public void fill(int address, int value) throws SerialPortException, SerialPortTimeoutException {
         setCursor(address);
         // "Fvvssssss"
         // returns "xxxxxx cccc"        
         // TODO
     }
     
-    public int getChecksum(int address, int size) throws SerialPortException {        
+    public int getChecksum(int address, int size) throws SerialPortException, SerialPortTimeoutException {        
         setCursor(address);
         // "Xssssss"
         // returns "xxxxxx cccc"
@@ -97,26 +119,55 @@ public class FRAM {
     
     //    
     
-    public int[] read(int address, int size) throws SerialPortException {
+    public int[] read(int address, int size) throws SerialPortException, SerialPortTimeoutException {
         setCursor(address);
         return read(size);
     }
     
-    public void write(int address, int [] data) throws SerialPortException {
+    public void write(int address, int [] data) throws SerialPortException, SerialPortTimeoutException {
         setCursor(address);
         write(data);        
     }
     
     public String sendCommand(String command) throws SerialPortException {
+        if(DEBUG) System.out.println("SEND:"+command+":");
         port.writeString(command+"\r");
-        return port.readString();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        String incoming = "";
+        while(true) {            
+            String g = port.readString();
+            if(g!=null) {
+                incoming = incoming + g;
+                int i = incoming.indexOf("\r");
+                if(i>=0) {
+                    if(DEBUG) System.out.println("RECV:"+incoming.substring(0,i)+":");
+                    return incoming.substring(0,i);
+                }
+            }            
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
     
     public static void main(String [] args) throws Exception
     {
         
-        FRAM fram = new FRAM("COM4");
-        fram.setCursor(0);
+        Thread.sleep(5000);
+        FRAM fram = new FRAM("COM3");
+        //int [] data = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+        //fram.write(0x00,data);
+        //fram.read(0x00,100);    
+        //fram.read(0x00,100); 
+        fram.read(0x00,100); 
+        Thread.sleep(5000);
         
     }
 
