@@ -80,11 +80,9 @@ through-hole pad for me to tag wires into.
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/Prog2.png)
 
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/cardTop.png)
-
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/cardBottom.png)
 
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/shellTop.png)
-
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/shellBottom.png)
 
 
