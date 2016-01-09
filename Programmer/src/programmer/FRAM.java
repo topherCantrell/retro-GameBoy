@@ -232,12 +232,18 @@ public class FRAM {
             
         } else if(args.length>0 && args[0].equals("toFRAM")) {
             
+            int chk = 0;
+            
             InputStream is = new FileInputStream(args[1]);
             int [] data = new int[is.available()];
             for(int x=0;x<data.length;++x) {
                 data[x] = is.read();
+                chk = chk + data[x];
+                chk = chk & 0xFFFF;
             }
-            is.close();            
+            is.close();          
+            
+            System.out.println("Checksum: "+Integer.toHexString(chk));
             fram.write(0,data);
             
             System.out.println("Copied file to FRAM");
