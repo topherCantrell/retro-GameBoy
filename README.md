@@ -70,10 +70,14 @@ through-hole pad for me to tag wires into.
 ### Tarzan Cartridge Pinout
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/cart2.png)
 
-### FRAM Pinout
-![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/FM1808.png)
-
 ## Programmer
+
+The propeller output pins are only 3.3V. But the FRAM chip recognizes 2.0 as high. The VDD of the FRAM chip
+must be 5V. The propeller tolerates the 5V outputs from the FRAM chip.
+
+The 10K pull-up resistor is very important. The FM1808 data sheet discusses it. You must pull the CE
+pin to VDD so that the FRAM does not get mangled during reset when the propeller chip's GPIO
+lines are tristated.
 
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/Programmer.png)
 
@@ -81,11 +85,15 @@ through-hole pad for me to tag wires into.
 
 ## FRAM Cartridge
 
+The modified Tarzan cartridge. TODO add a wiring table.
+
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/cardTop.png)
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/cardBottom.png)
 
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/shellTop.png)
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/shellBottom.png)
+
+The Tetris ROM programmed into the FRAM.
 
 ![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/tetris.png)
 
