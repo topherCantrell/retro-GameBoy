@@ -101,7 +101,7 @@ I found an old 32K FRAM chip in DIP form on ebay. These are getting harder and h
 would be to use a modern FRAM chip, but these are all surface mount. I wanted to start with something easier 
 to work with.
 
-![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/NROM.png)
+![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/FM1808.png)
 
 The FRAM chip is a little tricky in its bus cycle. It uses CE to latch in the address, and a little later you can
 assert OE to read from it. The FRAM is also sensitive to the CE level. If the CE driver tristates then the
