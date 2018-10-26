@@ -10,7 +10,7 @@ along the way.
 
 I started with a Game Boy Color and several cartridges I bought from ebay. 
 
-![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/IMG_0310.JPG)
+![](art/IMG_0310.JPG)
 
 ## Links
 
@@ -50,7 +50,7 @@ run the console and cartridge.
 
 The cartridge connector is one-sided, 32 pins. The signals are power, ground, clock, read, write, chip-select, reset, audio, 16 address lines, and 8 data lines. 
 
-![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/cartPinout.png)
+![](art/cartPinout.png)
 
 The Z80's address space is split nicely in half. The lower 32K (A15=0) is ROM space in the cartridge. The upper
 32K (A15=1) is for hardware registers, system RAM, and an additional 8K RAM area in the cartridge.
@@ -65,7 +65,7 @@ bank switching chip on the right. The Winnie the Pooh cartridge has RAM and ROM 
 MBC5 chip above the RAM. The 8 pin chip in the top left monitors the cartridge's power and keeps the battery-backed
 RAM in backup mode to protect it when the power drops. The battery is the big silver disk in the upper right.
 
-![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/IMG_0322.JPG)
+![](art/IMG_0322.JPG)
 
 ## Development Cartridge
 
@@ -85,7 +85,7 @@ the legs with a fine tip soldering iron.
 This picture shows the cleaned board. All of the surface mount pads are traced to through-holes making it
 easy to solder wires. I have labeled the ROM's holes and the cartridge connector.
 
-![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/cart2.png)
+![](art/cart2.png)
 
 The MBC5 bank switch divides the 32K ROM space into two 16K banks. The data lines and address lines A0-A13 (16K) 
 are wired directly from the cartridge connector to the ROM chip. The upper two processor address lines A14 and A15 
@@ -95,13 +95,13 @@ switched in and out through software.
 Here are the pinouts for the Nintendo ROM chip and the MBC5 bank switcher. The Tarzan ROM is an LN538, and the
 upper left pin (pin 1) is A19. 20 address lines -- that's a 1M ROM divided by the MBC5 into 64 16K banks.
 
-![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/NROM.png)
+![](art/NROM.png)
 
 I found an old 32K FRAM chip in DIP form on ebay. These are getting harder and harder to find. A much better way 
 would be to use a modern FRAM chip, but these are all surface mount. I wanted to start with something easier 
 to work with.
 
-![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/FM1808.png)
+![](art/FM1808.png)
 
 The FRAM chip is a little tricky in its bus cycle. It uses CE to latch in the address, and a little later you can
 assert OE to read from it. The FRAM is also sensitive to the CE level. If the CE driver tristates then the
@@ -123,11 +123,11 @@ The FRAM wiring is simple. Use the labeled board picture above. Wire up all the 
 and RA14 directly from the Nintendo ROM through-holes. Wire up VDD and GND. Wire in a 10K resistor between
 VDD and CE.
 
-![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/cardTop.png)
-![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/cardBottom.png)
+![](art/cardTop.png)
+![](art/cardBottom.png)
 
-![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/shellTop.png)
-![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/shellBottom.png)
+![](art/shellTop.png)
+![](art/shellBottom.png)
 
 ## Programmer
 
@@ -145,15 +145,15 @@ must be 5V. The propeller tolerates the 5V outputs from the FRAM chip.
 Again, the 10K pull-up resistor is very important. You must pull the CE pin to VDD so that the FRAM does not 
 get mangled during reset when the propeller chip's GPIO lines are tristated.
 
-![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/Programmer.png)
+![](art/Programmer.png)
 
-![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/Prog2.png)
+![](art/Prog2.png)
 
 ## Testing Development Cycle
 
 I downloaded the GB Tetris ROM to my PC. I used my programmer to write it to the FRAM chip. Then I put the
 FRAM chip in the cartridge and put it in the GBC. Works great!
 
-![](https://github.com/topherCantrell/GameBoyColor-Development/blob/master/art/tetris.png)
+![](art/tetris.png)
 
 
