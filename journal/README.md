@@ -1,5 +1,9 @@
 # Journal
 
+## 9/15/2024
+
+Almost 10 years later! I cleaned up the repo and stared on a UV EPROM version of the dev cart.
+
 ## 12/27/2015
 
 Here is where I am.
@@ -20,4 +24,3 @@ chip even if you have to make a DIP adapter board. But I'd like to see the FRAM 
 taken it this far and there is a video of it working.
 
 Pausing a bit to work on other projects. I'll be back.
-
