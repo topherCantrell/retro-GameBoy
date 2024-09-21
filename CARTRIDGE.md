@@ -48,7 +48,20 @@ I used the continuity check on my meter to find solder pads for all the signals 
 
 ![](art/pinout.jpg)
 
-TODO - adding a ROM board and wiring.
+I cut a small proto board and glued it to the top of the original board. I used a strip of
+plastic to enforce the joint. My wire wrap wire just fits in the board's vias making it easy to wire.
+
+![](art/front.jpg)
+
+![](art/back.jpg)
+
+I cut the top of the Winnie the Pooh cartridge for my extended board.
+
+![](art/case.jpg)
+
+Here is the game Asteroids burned into the EPROM:
+
+![](art/running.jpg)
 
 # An FRAM Cartridge
 
