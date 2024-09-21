@@ -16,7 +16,7 @@ different flavor MMCs that support different bank switching features.
 I bought a special screwdriver to remove the Nintendo screws from cartridges. Here is the insides of Tarzan and the
 Adventures of Pooh:
 
-![](art/twoCarts.jpg)
+<img src="art/twoCarts.jpg" width=600>
 
 Winnie the Pooh has a battery backed RAM chip, but Tarzan does not. The ROMs for both are 44 pins (tiny pins). My
 first development cartridge used an FRAM chip. Read about that at the end of this page.
@@ -24,7 +24,7 @@ first development cartridge used an FRAM chip. Read about that at the end of thi
 I used a hot-air pencil to remove the ROM chip from the Winnie the Pooh cartridge. I also removed the soldered-down
 CR1616 battery (I'll use a replaceable battery).
 
-![](art/hack.jpg)
+<img src="art/hack.jpg" width=600>
 
 The MBC5 chip supports 8M of ROM banked switched into memory from 4000-7FFF as 512 different 16K banks. Bank 0 is 
 always mapped to 0000-3FFF. 8M uses address lines A0-A22  (2^23 = 8M).
@@ -36,7 +36,7 @@ MBC5 memory-mapper.
 
 Here is the pinout for the EPROM:
 
-![](art/MC27C801.jpg)
+<img src="art/MC27C801.jpg">
 
 The Tetris cartridge connects the CE- (chip enable) of the GB ROM to A15. Thus the ROM chip is enabled anytime A15 
 is 0 (the entire lower half of the address space). My cartridge does the same.
@@ -46,22 +46,22 @@ the CPU requests a READ operation. My cartridge does the same.
 
 I used the continuity check on my meter to find solder pads for all the signals the new EPROM needs:
 
-![](art/pinout.jpg)
+<img src="art/pinout.jpg">
 
 I cut a small proto board and glued it to the top of the original board. I used a strip of
 plastic to enforce the joint. My wire wrap wire just fits in the board's vias making it easy to wire.
 
-![](art/front.jpg)
+<img src="art/front.jpg" width=600>
 
-![](art/back.jpg)
+<img src="art/back.jpg" width=600>
 
 I cut the top of the Winnie the Pooh cartridge for my extended board.
 
-![](art/case.jpg)
+<img src="art/case.jpg" width=600>
 
 Here is the game Asteroids burned into the EPROM:
 
-![](art/running.jpg)
+<img src="art/running.jpg" width=600>
 
 # An FRAM Cartridge
 
@@ -75,14 +75,14 @@ extra RAM, and thus no battery back.
 
 Here is the pinout for the FRAM:
 
-![](art/FM1808.png)
+<img src="art/FM1808.png">
 
 FRAM datasheet:
 [http://datasheet.octopart.com/FM1808-70-PG-Ramtron-datasheet-8328945.pdf](http://datasheet.octopart.com/FM1808-70-PG-Ramtron-datasheet-8328945.pdf)
 
 I used my meter to find solder pads for the signals I needed for the FRAM:
 
-![](art/cart2.png)
+<img src="art/cart2.png" width=600>
 
 The FRAM chip is a little tricky in its bus cycle. It uses CE to latch in the address, and a little later you can
 assert OE to read from it. The FRAM is also sensitive to the CE level. If the CE driver tristates then the
@@ -104,11 +104,11 @@ The FRAM wiring is simple. Use the labeled board picture above. Wire up all the 
 and RA14 directly from the Nintendo ROM through-holes. Wire up VDD and GND. Wire in a 10K resistor between
 VDD and CE.
 
-![](art/cardTop.png)
-![](art/cardBottom.png)
+<img src="art/cardTop.png" width=600>
+<img src="art/cardBottom.png" width=600>
 
-![](art/shellTop.png)
-![](art/shellBottom.png)
+<img src="art/shellTop.png" width=600>
+<img src="art/shellBottom.png" width=600>
 
 # Programmer
 
@@ -126,13 +126,13 @@ must be 5V. The propeller tolerates the 5V outputs from the FRAM chip.
 Again, the 10K pull-up resistor is very important. You must pull the CE pin to VDD so that the FRAM does not 
 get mangled during reset when the propeller chip's GPIO lines are tristated.
 
-![](art/Programmer.png)
+<img src="art/Programmer.png" width=600>
 
-![](art/Prog2.png)
+<img src="art/Prog2.png" width=600>
 
 ## Testing Development Cycle
 
 I downloaded the GB Tetris ROM to my PC. I used my programmer to write it to the FRAM chip. Then I put the
 FRAM chip in the cartridge and put it in the GBC. Works great!
 
-![](art/tetris.png)
+<img src="art/tetris.png" width=600>

@@ -4,7 +4,9 @@ Gameboy/GameboyColor homebrew development is nothing new. There are lots of tuto
 hacking (see the links below). This repo is a journal of my experience and any code I produced 
 along the way. 
 
-I started with a Game Boy Color and several cartridges I bought from ebay. 
+Journal here: [Journal](journal.md)
+
+[Building a Development Cartridge](CARTRIDGE.md)
 
 ## Links
 
@@ -42,13 +44,6 @@ Most cartridges include extra RAM (often battery-backed) and ROMs much larger th
 bank-switching chips like MBC5 in each cartridge to select banks of RAM and ROM in the cartridge. I'll discuss
 the MBC more in the programming section below. The chip generates the upper address lines (A14 and up) from
 internal latches you twiddle by writing to the ROM address space.
-
-## Development Cartridge
-
-The Game Boy emulator is awesome for developing code. But I wanted to run my game on the real hardware. Here
-is how I built a programmable development cartridge:
-
-[Building a Development Cartridge](CARTRIDGE.md)
 
 # Game Boy Advanced Development
 
